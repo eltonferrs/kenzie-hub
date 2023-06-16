@@ -7,7 +7,8 @@ export const registerSchema= z.object({
     contact: z.string().nonempty("Contato é obrigatório").min(9),
     course_module: z.string().nonempty("selecione módulo"),
     password: z.string().nonempty("Insira uma senha")
-    .regex(/(?=.*[A-Za-z])/, "A senha deve conter pelo menos uma letra")
+    .regex(/(?=.*[A-Z])/, "A senha deve conter pelo menos uma letra maiúscula")
+    .regex(/(?=.*[a-z])/, "A senha deve conter pelo menos uma letra minúsculo")
     .regex(/(?=.*\d)/,"A senha deve conter pelo menos um número")
     .regex(/(?=.*[@$!%*#?&])/,"A senha deve conter pelo menos um caractere especial Ex: @, $, !, %, *, #, ? ou &")
     .min(8,"É nescessário conter pelo menos 8 caracters"),
