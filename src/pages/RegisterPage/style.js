@@ -11,6 +11,7 @@ export const StyleRegister= styled.div`
         display: flex;
         width: 100%;
         flex-direction: row;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
     }
@@ -61,4 +62,5 @@ export const StyleRegister= styled.div`
             background-color: var(--color-primary);
         }
     }
+
 `

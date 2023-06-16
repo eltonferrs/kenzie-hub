@@ -6,8 +6,9 @@ import { useForm } from "react-hook-form"
 import { loginSchema } from "./loginSchema"
 import {zodResolver} from "@hookform/resolvers/zod"
 import { api } from "../../service/api"
+import { toast } from "react-toastify"
 
-const LoginPage= ({ setUser }) =>{
+const LoginPage= () =>{
 
     const navigate= useNavigate("")
     const {register,handleSubmit, reset,formState: {errors}} = useForm({resolver: zodResolver(loginSchema)})
@@ -15,19 +16,13 @@ const LoginPage= ({ setUser }) =>{
         try {
             const response = await api.post("/sessions",data)
             localStorage.setItem('@KenzieHub:userToken',JSON.stringify(response.data.token))
-            setUser(response.data.user)
             localStorage.setItem('@KenzieHub:userId',JSON.stringify(response.data.user.id))
-           // console.log(response.data)
-            navigate("/dashboard")
+            toast.success("Logado com Sucesso")
+            setTimeout(()=>{ navigate("/dashboard") },3500)
             
         } catch (error) {
-            console.log(error)
-            //chama o tost de erro
-        }
-        finally{
-            console.log("finally")
-            //tost de sucesso e redireciona pra dash board
-            //armazena o response.data no localStorage
+            toast.error("Email ou senha incorreta!")
+
         }
     }
 

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const StyleLoginPage= styled.div`
-    margin-top:40px;
+    margin-top:20vh;
     width: 80%;
     display: flex;
     flex-direction: column;
@@ -33,9 +33,6 @@ export const StyleLoginPage= styled.div`
         border-radius: 4px;
         color: var(--color-grey-0);
         background-color: var(--color-grey-1);
-    }
-    button:hover{
-        background-color: var(--color-grey-2);
     }
     .box{
         margin-top: 25px;

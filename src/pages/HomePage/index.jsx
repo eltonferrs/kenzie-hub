@@ -1,12 +1,29 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Logo from "../../components/Logo"
 import { StyleHomePage } from "./style"
+import { useEffect, useState } from "react"
+import { api } from "../../service/api"
 
-const HomePage = ({user})=>{
+const HomePage = ()=>{
+    const [user,setuser]=useState({})
+    const navegate= useNavigate('')
+    const idUser= JSON.parse(localStorage.getItem('@KenzieHub:userId'))
+
+    useEffect(()=>{
+        const getUser=async()=>{
+            const response= await api.get(`/users/${idUser}`)
+            setuser(response.data)
+        }
+
+        if(idUser==null){
+            navegate("/")
+        }else{
+            getUser()
+        }
+    },[])
     const logout =()=>{
         localStorage.clear()
     }
-    console.log(user)
     return (
         <StyleHomePage>
             <nav>

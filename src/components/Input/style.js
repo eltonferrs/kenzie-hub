@@ -9,6 +9,9 @@ export const StyleInput= styled.div`
     font-weight: 400;
     font-size: .75rem;
     color: var(--color-grey-0);
+    .error{
+        text-align: start;
+    }
     input, select,option{
         text-align: start;
         border: none;
