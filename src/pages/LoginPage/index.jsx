@@ -1,33 +1,21 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Input from "../../components/Input"
 import Logo from "../../components/Logo"
 import {StyleLoginPage} from "./style"
 import { useForm } from "react-hook-form"
 import { loginSchema } from "./loginSchema"
 import {zodResolver} from "@hookform/resolvers/zod"
-import { api } from "../../service/api"
-import { toast } from "react-toastify"
+import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 const LoginPage= () =>{
 
-    const navigate= useNavigate("")
-    const {register,handleSubmit, reset,formState: {errors}} = useForm({resolver: zodResolver(loginSchema)})
-    const getUser= async (data)=>{
-        try {
-            const response = await api.post("/sessions",data)
-            localStorage.setItem('@KenzieHub:userToken',JSON.stringify(response.data.token))
-            localStorage.setItem('@KenzieHub:userId',JSON.stringify(response.data.user.id))
-            toast.success("Logado com Sucesso")
-            setTimeout(()=>{ navigate("/dashboard") },3500)
-            
-        } catch (error) {
-            toast.error("Email ou senha incorreta!")
+    const {loginUser}= useContext(UserContext)
 
-        }
-    }
+    const {register,handleSubmit, reset,formState: {errors}} = useForm({resolver: zodResolver(loginSchema)})
 
     const submit=(data)=>{
-        getUser(data)
+        loginUser(data)
         reset()
     }
     return(

@@ -1,15 +1,17 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Input from "../../components/Input"
 import Logo from "../../components/Logo"
-import { api } from "../../service/api"
 import { useForm } from "react-hook-form"
 import { StyleRegister } from "./style"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { registerSchema } from "./registerSchema"
-import { toast } from "react-toastify"
+import { useContext } from "react"
+import { UserContext } from "../../providers/UserContext"
 
 const RegisterPage= () => {
-    const navigate= useNavigate('')
+
+    const {newUser} = useContext(UserContext)
+    
     const optionValues=[
     "Primeiro módulo (Introdução ao Frontend)",
     "Segundo módulo (Frontend Avançado)",
@@ -17,15 +19,7 @@ const RegisterPage= () => {
     "Quarto módulo (Backend Avançado)"
     ]
     const{register,handleSubmit,reset, formState: {errors}}= useForm({resolver: zodResolver(registerSchema)})
-    const newUser= async(data)=>{
-        try {
-            await api.post("/users", data)
-            toast.success("Registrado com Sucesso")
-            setTimeout(()=>{ navigate("/") },3500)
-        } catch (error) {
-            {error.response.status==401?toast.error("Email já cadastrado no sistema"): toast.error("Cadastro não realizado erro na API")}
-        }
-    }
+   
     const registerUser=(data)=>{
         newUser(data)
         reset()

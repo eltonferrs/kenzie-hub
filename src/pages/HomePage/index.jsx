@@ -1,30 +1,22 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import Logo from "../../components/Logo"
 import { StyleHomePage } from "./style"
-import { useEffect, useState } from "react"
-import { api } from "../../service/api"
+import { useContext, useEffect } from "react"
+import TechItem from "../../components/Tech"
+import { TechContext } from "../../providers/TechContext"
 
 const HomePage = ()=>{
-    const [user,setuser]=useState({})
-    const navegate= useNavigate('')
-    const idUser= JSON.parse(localStorage.getItem('@KenzieHub:userId'))
 
+    const {userTechs, getTechs,setuserTechs}= useContext(TechContext)
+    
     useEffect(()=>{
-        const getUser=async()=>{
-            const response= await api.get(`/users/${idUser}`)
-            setuser(response.data)
-        }
-
-        if(idUser==null){
-            navegate("/")
-        }else{
-            getUser()
-        }
+        getTechs()
     },[])
     const logout =()=>{
         localStorage.clear()
+        setuserTechs({})
     }
-    return (
+    return (    
         <StyleHomePage>
             <nav>
                 <div className="box">
@@ -34,13 +26,18 @@ const HomePage = ()=>{
             </nav>
             <header className="userHeader">
                 <div className="box">
-                    <h2>Óla,{user.name}</h2>
-                    <p>{user.course_module}</p>
+                    <h2>Óla,{userTechs.name}</h2>
+                    <p>{userTechs.course_module}</p>
                 </div>
             </header>
             <section>
-                <h2>Que pena! Estamos em desenvolvimento :{"("}</h2>
-                <p>Nossa aplicação está em desenvolvimento, em breve teremos novidades</p>
+               <div>
+                    <h2>Tecnologias</h2>
+                    <button>+</button>
+                </div>
+                <ul>
+                    {userTechs.techs? userTechs.techs.map((Element=><TechItem key={Element.id}><p>{Element.title}</p><p>{Element.status}</p></TechItem>)):<></>}
+                </ul>
             </section>
             
         </StyleHomePage>
