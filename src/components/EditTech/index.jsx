@@ -4,6 +4,7 @@ import { TechContext } from "../../providers/TechContext"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { EditTechSchema } from "./editTechSchema"
+import { EditTechStyle } from "./style"
 
 const EditTech= ()=>{
     
@@ -17,18 +18,18 @@ const EditTech= ()=>{
     }
 
     return(
-        <div>
-            <div> <h2>Tecnologia Detalhes</h2> <button onClick={handleModal}>x</button></div>
+        <EditTechStyle>
+            <div className="modalHeader"> <h2>Tecnologia Detalhes</h2> <button onClick={handleModal}>x</button></div>
             <form onSubmit={handleSubmit(submit)}>
                 <Input disabled={true} label={"Nome"} placeholder={nameTech}/>
                 <Input select={true} label={"Selecionar Status"} optionValues={optionValues} 
                 {...register("status")} errors={errors.status}/>
-                <div>
-                    <button >Salvar alterações</button>
+                <div className="buttons__box">
+                    <button className="submitButton" >Salvar alterações</button>
                     <button onClick={(event)=>(event.preventDefault(),TechDelete(idtech),handleModal())}>Excluir</button>
                 </div>
             </form>
-        </div>
+        </EditTechStyle>
     )
 }
 

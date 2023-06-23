@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-export const AddTechStyle= styled.div`
+export const EditTechStyle= styled.div`
     background-color: var(--color-grey-2);
     h2{
         font-family: 'Inter',sans-serif;
@@ -35,17 +35,28 @@ export const AddTechStyle= styled.div`
         gap: 10px;
     }
     button{
-        width: 100%;
+        width: 30%;
         border: none;
         font-family: 'Inter',sans-serif;
         font-weight: 400;
         font-size: 0.875rem;
         color: var(--color-grey-0);
-        background-color: var(--color-primary);
         padding: 15px 0;
         border-radius: 4px;
+        background-color: var(--color-grey-1);
     }
     button:hover{
-        background-color: var(--color-primary-focus);
+        background-color: var(--color-grey-2);
+    }
+    .buttons__box{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .submitButton{
+        width: 60%;
+        background-color: var(--color-primary-negative);
     }
 `

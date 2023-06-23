@@ -19,9 +19,9 @@ const AddTech= ()=> {
     }
     return(
         <AddTechStyle>
-            <div> <h2>Cadastrar Tecnologia</h2> <button onClick={handleModal}>x</button></div>
+            <div className="modalHeader"> <h2>Cadastrar Tecnologia</h2> <button onClick={handleModal}>x</button></div>
             <form onSubmit={handleSubmit(submit)}>
-                <Input type={"text"} placeholder={"Digite aqui o nome"} label={"Nome"}
+                <Input type={"text"} placeholder={"Digite a tecnologia"} label={"Nome"}
                 {...register("title")} errors={errors.title} />
                 <Input select={true} label={"Selecionar Status"} optionValues={optionValues} 
                 {...register("status")} errors={errors.status}/>
