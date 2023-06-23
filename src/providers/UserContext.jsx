@@ -7,7 +7,6 @@ export const UserContext= createContext({})
 
 export const UserProvider= ({children}) => {
 
-    const [user, setuser]= useState({})
     const navigate= useNavigate("")
     const idUser= JSON.parse(localStorage.getItem('@KenzieHub:userId'))
 

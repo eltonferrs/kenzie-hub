@@ -23,4 +23,21 @@ export const GlobalStyle = createGlobalStyle`
 body{
 	background-color: var(--color-grey-4);
 }
+
+.modal-content{
+    width: 90%;
+    max-width: 370px;
+    height: fit-content;
+    border: none;
+}
+.modal-overlay{
+    background-color: rgba(0,2,1,0.4);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+ 	justify-content: center;
+}
 `

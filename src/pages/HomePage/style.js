@@ -28,6 +28,8 @@ export const StyleHomePage = styled.div`
     }
     nav{
         position: sticky;
+        top: 0;
+        background-color: var(--color-grey-4);
     }
     h2,p{
         font-family: 'Inter',sans-serif;
@@ -58,6 +60,56 @@ export const StyleHomePage = styled.div`
         background-color: var(--color-grey-2);
     }
     a:hover{
+        background-color: var(--color-grey-3);
+    }
+    ul{
+        padding: 20px 0 0 0;
+        background-color: var(--color-grey-2);
+        width: 100%;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        align-items: center;
+        border-radius: 4px;
+    }
+    li{
+        width: 95%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        background-color: var(--color-grey-4);
+        padding: 20px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+        
+    }
+    li:hover{
+        background-color: var(--color-grey-3);
+    }
+    .addTech{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .status{
+        color: var(--color-grey-1);
+    }
+    .newTech{
+        padding: 7px 10px;
+        font-family: 'Inter',sans-serif;
+        font-weight: 400;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 4px;
+        color: var(--color-grey-0);
+        background-color: var(--color-grey-2);
+    }
+    .newTech:hover{
         background-color: var(--color-grey-3);
     }
 `

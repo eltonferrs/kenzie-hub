@@ -4,6 +4,7 @@ import RegisterPage from "../pages/RegisterPage"
 import HomePage from "../pages/HomePage"
 import { AutoLogin } from "./ProtectRoutes/AutoLogin"
 import { ProtectedDashboard } from "./ProtectRoutes/ProtectDashbord"
+import { TechProvider } from "../providers/TechContext"
 
 export const RoutesMain=() => {
     return(
@@ -13,7 +14,10 @@ export const RoutesMain=() => {
                 <Route path="/register" element={<RegisterPage />} />
             </Route>
             <Route element={<ProtectedDashboard />}>
-                <Route path="/dashboard" element={<HomePage  />} />
+                <Route path="/dashboard" element={
+                <TechProvider>
+                    <HomePage  />
+                </TechProvider> } />
             </Route>
         </Routes>
     )

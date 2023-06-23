@@ -4,10 +4,14 @@ import { StyleHomePage } from "./style"
 import { useContext, useEffect } from "react"
 import TechItem from "../../components/Tech"
 import { TechContext } from "../../providers/TechContext"
+import Modal from "react-modal"
+import AddTech from "../../components/AddTech"
+import EditTech from "../../components/EditTech"
 
+Modal.setAppElement("#root")
 const HomePage = ()=>{
 
-    const {userTechs, getTechs,setuserTechs}= useContext(TechContext)
+    const {modalType,setmodalType, userTechs, getTechs,setuserTechs,handleModal,modalIsOpen}= useContext(TechContext)
     
     useEffect(()=>{
         getTechs()
@@ -31,13 +35,18 @@ const HomePage = ()=>{
                 </div>
             </header>
             <section>
-               <div>
+               <div className="addTech">
                     <h2>Tecnologias</h2>
-                    <button>+</button>
+                    <button className="newTech" onClick={()=>(handleModal(),setmodalType("create"))}>+</button>
                 </div>
                 <ul>
-                    {userTechs.techs? userTechs.techs.map((Element=><TechItem key={Element.id}><p>{Element.title}</p><p>{Element.status}</p></TechItem>)):<></>}
+                    {userTechs.techs? userTechs.techs.map((Element=><TechItem id={Element.id} className={Element.title} key={Element.id}><p>{Element.title}</p><p className="status">{Element.status}</p></TechItem>)):<></>}
                 </ul>
+                <Modal isOpen={modalIsOpen} onRequestClose={handleModal}
+                overlayClassName="modal-overlay" className="modal-content">
+                    {modalType == "create"?<AddTech />:<EditTech />}
+                </Modal>
+                
             </section>
             
         </StyleHomePage>

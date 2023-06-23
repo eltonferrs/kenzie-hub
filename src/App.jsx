@@ -10,7 +10,7 @@ function App() {
       <Reset />
       <GlobalStyle />
       <main>
-        <ToastContainer autoClose={3000} />
+        <ToastContainer autoClose={3000} />  
         <RoutesMain />
       </main>
     </>
