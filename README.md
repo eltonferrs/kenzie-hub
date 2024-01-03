@@ -6,7 +6,7 @@
 
 ##  Visão Geral
 
-Principaltecnologias usada.
+Principais tecnologias usada.
 
 - [React](https://react.dev/)
 - [Zod](https://zod.dev/)
